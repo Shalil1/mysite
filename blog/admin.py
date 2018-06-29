@@ -12,4 +12,4 @@ class PostAdmin(admin.ModelAdmin):
     ordering = ['status', 'publish']
 
 
-admin.site.register(Post, PostAdmin)meysamtest
+admin.site.register(Post, PostAdmin)meysam
