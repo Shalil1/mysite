@@ -5,6 +5,11 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
 
+
+class PublishedManager(models.Manager):
+    def _get_queryset(self):
+        return super(PublishedManager,self).get_queryset().filter(status='published')
+
 class Post(models.Model):
     published_ = (('draft', 'Draft'), ('published', 'Published'),)
     STATUS_CHOICES = published_
@@ -17,6 +22,9 @@ class Post(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
+
+    objects = models.Manager()
+    published = PublishedManager()
 
     class Meta:
         ordering = ('-publish',)
