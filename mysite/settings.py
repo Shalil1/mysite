@@ -25,6 +25,8 @@ SECRET_KEY = 'ces*k6_b^r=2#st#mx5lr9)&4s*#9f8rv6$yk%+ay@z@n5uy7t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+SITE_ID = 1
+
 ALLOWED_HOSTS = []
 
 
@@ -37,7 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog'
+    'blog',
+    'taggit',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
+
 ]
 
 MIDDLEWARE = [
@@ -52,6 +58,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'mysite.urls'
 
+SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -64,9 +73,18 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+
         },
+
     },
 ]
+
+STATIC_ROOT = 'staticfiles'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+            os.path.join(BASE_DIR, 'static'),
+            )
+
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
@@ -119,3 +137,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'soroush.forwork@gmail.com'
+EMAIL_HOST_PASSWORD = 'new9198356568'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
